@@ -2,7 +2,7 @@
 
 Tool to repair plot flags sync for the Warden and Hawke's genders in DAI saves.
 
-This standalone companion to Thedas World State Studio needs **no Java or Python installation**.
+It's a standalone companion to Thedas World State Studio and requires **no Java or Python installation**.
 
 **[Download for Windows — 0.1.2 preview](downloads/Thedas-Save-Repair-0.1.2-preview-Windows-x64.zip?raw=true)**
 
