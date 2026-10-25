@@ -1,7 +1,8 @@
-<<<<<<< HEAD
 # Thedas Save Repair
 
-Repair the Warden and Hawke gender flags in existing **PC Dragon Age: Inquisition** saves. This standalone companion to Thedas World State Studio needs **no Java or Python installation**.
+Tool to repair plot flags sync for the Warden and Hawke's genders in DAI saves.
+
+This standalone companion to Thedas World State Studio needs **no Java or Python installation**.
 
 **[Download for Windows — 0.1.2 preview](downloads/Thedas-Save-Repair-0.1.2-preview-Windows-x64.zip?raw=true)**
 
