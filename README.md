@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Thedas Save Repair
 
 Repair the Warden and Hawke gender flags in existing **PC Dragon Age: Inquisition** saves. This standalone companion to Thedas World State Studio needs **no Java or Python installation**.
