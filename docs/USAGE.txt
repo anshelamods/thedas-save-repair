@@ -1,0 +1,85 @@
+THEDAS SAVE REPAIR — 0.1.2 PREVIEW
+PC Dragon Age: Inquisition · Warden and Hawke gender repair
+
+This is a separate companion to Thedas World State Studio. It repairs the
+gender flags already stored in an Inquisition save created with an older
+world-state export. You do not need Java, Python, Frosty, or an installation
+step. A tester reports successful in-game repair; broader testing is ongoing.
+
+USE
+1. Extract the WHOLE ZIP. Keep Thedas Save Repair.exe beside its _internal
+   folder. Close Inquisition, then run Thedas Save Repair.exe.
+2. Choose your Inquisition .DAS save. The normal save folder opens by default,
+   including a redirected Documents folder. You can also drag a .DAS onto the EXE.
+3. Check the Warden and Hawke selections, then click Back up & repair save.
+   The saved gender enum supplies the initial selection. When older exports
+   left the other flags inconsistent, the app shows "gender flags disagree".
+4. Start Inquisition and load that same save normally.
+
+This build keeps its bundled Python runtime in _internal instead of unpacking
+it to a temporary folder at startup. It replaces the 0.1.0 single-file package
+after reports of "Failed to start embedded python interpreter". No Python
+installation is required; moving just the EXE without _internal will not work.
+
+The save keeps its original name, size and slot. A verified, uniquely named
+backup is stored OUTSIDE the game's save folder, under:
+    %LOCALAPPDATA%\ThedasWorldstateStudio\SaveBackups
+Use Open backups folder to go directly to this slot's backups. They include
+the original filename, operation, and UTC backup timestamp. Different save
+locations have separate backup folders, even when their filenames match.
+Renaming a raw save to .bak was not sufficient to keep it out of the game's
+Load menu. The 0.1.2 build fixes this by keeping backups outside that folder.
+Uncheck Repair for either hero to leave that hero unchanged. If all selected
+flags already agree, the repair button is disabled and nothing is written.
+
+UNDO AND RESTORE
+Undo last repair restores the pre-repair save, provided the repaired file
+has not changed. It stops if the game has saved newer progress to that slot.
+After restarting this tool, select the .DAS and use Restore backup to choose
+one of that slot's backups. Restoring also backs up the version it replaces.
+Choose the intended older version: restoring a backup restores the entire
+save, including its earlier progress. Backups stay on your computer.
+
+REMOVE OLD DUPLICATE LOAD ENTRIES
+Close Inquisition, select the real .DAS save, and click Move old backups out
+of Save. This moves recognized .gender-backup-*.bak and .tapestry-backup-*.bak
+files belonging to that slot into the external backups folder. Each copy is
+verified before its old file is removed. The active .DAS is not changed.
+Then reopen Inquisition's Load menu. Existing duplicates may remain cached
+until the game is restarted. Repeat for other repaired slots if needed.
+If you manually gave a backup an unrelated name, move that backup completely
+outside BioWare\Dragon Age Inquisition\Save too; it cannot be identified
+automatically as one of this tool's backups. Changing its extension is not enough.
+
+WHAT IT FIXES
+The Warden's and Hawke's gender enums and matching male/female predicates are
+synchronized together. No character-class, origin, romance, quest, inventory,
+Inquisitor, face, or body settings are edited. Checksums are verified before
+editing and refreshed afterward. Unknown plot values and all bits outside
+the plot table/checksum are preserved. The tool refuses incomplete, corrupt,
+ambiguous, or unsupported files rather than guessing or adding missing flags.
+
+HAWKE LIMIT
+For the intended Hawke character-creation selection, use a save from BEFORE
+Hawke's character creation begins. Changing these plot flags does not rebuild
+a face/body already created, undo a cutscene, or replay completed dialogue.
+This is not a general appearance editor or a replacement for every feature
+of the old World Editor. Console saves are not supported.
+
+VALIDATION
+16 focused automated tests passed, including external backup/undo/restore,
+verified migration of old backups, backup failures, separate save locations,
+corrupt input refusal, file-write failures, unrelated data preservation,
+all eight bit alignments, and all four gender combinations.
+760 local saves were inspected read-only: 758 supported saves passed 1,516
+in-memory repair checks. Two saves were refused for pre-existing checksum
+mismatches. Original files were hash-checked afterward and were unchanged.
+Independent readback through the old editor checked 14 representative outputs
+across alignments 0–6. Its loader does not support alignment 7; the new reader
+and preservation checks do. The executable was tested with Java/Python absent
+from PATH. A tester reports that in-game repair worked, and identified the
+duplicate-backup problem corrected in this build. This is a limited user
+report; comprehensive gameplay or console compatibility is not claimed.
+
+For newly started games, also use Studio 1.0.5 or later and re-export older
+world states so the new campaign receives synchronized flags from the start.
